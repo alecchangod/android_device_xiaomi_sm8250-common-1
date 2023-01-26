@@ -1,3 +1,6 @@
+# Brightness Curve
+persist.sys.brightness.low.gamma=true
+
 # Camera
 camera.disable_zsl_mode=true
 
