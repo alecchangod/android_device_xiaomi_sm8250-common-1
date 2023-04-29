@@ -186,6 +186,7 @@ TARGET_ODM_PROP += $(COMMON_PATH)/properties/odm.prop
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/properties/system.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor_$(TARGET_BOARD_PLATFORM).prop
+TARGET_PRODUCT_PROP += $(COMMON_PATH)/properties/product.prop
 
 # Recovery
 ifeq ($(TARGET_IS_VAB),true)
