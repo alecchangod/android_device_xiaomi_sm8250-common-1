@@ -49,7 +49,7 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
 # Audio
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME), lito)
+ifeq ($(TARGET_BOARD_PLATFORM), lito)
 AUDIO_FEATURE_ENABLED_EXT_AMPLIFIER := true
 AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_HDMI_SPK := true
@@ -108,12 +108,14 @@ else
 BOARD_BOOT_HEADER_VERSION := 2
 endif
 BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm
+BOARD_KERNEL_CMDLINE += androidboot.fstab_suffix=qcom
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 BOARD_KERNEL_CMDLINE += kpti=off
 BOARD_KERNEL_CMDLINE += cgroup_disable=pressure
 BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_KERNEL_PAGESIZE := 4096
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 ifeq (kona,$(TARGET_BOARD_PLATFORM))
@@ -156,6 +158,8 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 402653184
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 endif
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 114135379968
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+TARGET_USERIMAGES_USE_F2FS := true
 BOARD_USES_METADATA_PARTITION := true
 
 SSI_PARTITIONS := product system system_ext
