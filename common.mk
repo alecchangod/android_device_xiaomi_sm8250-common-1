@@ -436,7 +436,7 @@ PRODUCT_PACKAGES += \
 
 ifneq ($(TARGET_BOARD_PLATFORM), lito)
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+    $(LOCAL_PATH)/configs/powerhint_kona.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 else
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint_lito.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
@@ -577,8 +577,14 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 ifneq  ($(TARGET_HAS_CUSTOM_WIFI_CONF), true)
+ifneq ($(TARGET_BOARD_PLATFORM), lito)
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/configs/wifi/WCNSS_qcom_cfg_kona.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
+else
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wifi/WCNSS_qcom_cfg_lito.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
+endif
+PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 endif
